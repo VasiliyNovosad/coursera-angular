@@ -14,7 +14,7 @@
         var ddo = {
             templateUrl: 'foundItems.html',
             scope: {
-                foundItems: '<',
+                items: '<',
                 onRemove: '&'
             }
         };
@@ -32,7 +32,7 @@
                 url: (ApiBasePath + "/menu_items.json")
             }).then(function(result) {
                 var foundItems = [];
-                angular.forEach(result.data, function(value, key){
+                angular.forEach(result.data.menu_items, function(value, key){
                     if (value.description.indexOf(searchTerm) != -1) {
                         foundItems.push(value);
                     }
@@ -49,24 +49,20 @@
     function NarrowItDownController(MenuSearchService) {
         var menu = this;
         menu.searchTerm = '';
-
-        var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
-
-        promise.then(function (response) {
-            menu.found = response;
-        })
-            .catch(function (error) {
-                console.log(error);
-            });
+        menu.found = [];
 
         menu.getMenuItems = function () {
+            if (menu.searchTerm === '') {
+                menu.found = [];
+            }
             var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
 
             promise.then(function (response) {
-                console.log(response.data);
+                menu.found = response;
             })
                 .catch(function (error) {
                     console.log(error);
+                    menu.found = [];
                 })
         };
 
