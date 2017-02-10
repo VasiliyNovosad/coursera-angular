@@ -57,8 +57,10 @@
         var menu = this;
         menu.searchTerm = '';
         menu.found = [];
+        menu.clicked = false;
 
         menu.getMenuItems = function () {
+            menu.clicked = true;
             if (menu.searchTerm === '') {
                 menu.found = [];
             } else {
