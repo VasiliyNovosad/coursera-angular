@@ -9,7 +9,7 @@ input[type="text"] {
   float: left;
   margin-left: 10px;
 }
-found-items {
+found-items, .not-found {
   float: left;
   width: 100%;
 }
