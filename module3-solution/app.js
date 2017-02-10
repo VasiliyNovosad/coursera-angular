@@ -60,20 +60,23 @@
         menu.clicked = false;
 
         menu.getMenuItems = function () {
-            menu.clicked = true;
             if (menu.searchTerm === '') {
                 menu.found = [];
+                menu.clicked = true;
             } else {
                 var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
 
                 promise.then(function (response) {
                     menu.found = response;
+                    menu.clicked = true;
                 })
                     .catch(function (error) {
                         console.log(error);
                         menu.found = [];
+                        menu.clicked = true;
                     })
             }
+
         };
 
         menu.removeItem = function (itemIndex) {
