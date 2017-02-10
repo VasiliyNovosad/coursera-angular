@@ -16,10 +16,17 @@
             scope: {
                 items: '<',
                 onRemove: '&'
-            }
+            },
+            controller: FoundItemsDirectiveController,
+            controllerAs: 'menu',
+            bindToController: true
         };
 
         return ddo;
+    }
+
+    function FoundItemsDirectiveController() {
+        var menu = this;
     }
 
     MenuSearchService.$inject = ['$http', 'ApiBasePath'];
@@ -54,16 +61,17 @@
         menu.getMenuItems = function () {
             if (menu.searchTerm === '') {
                 menu.found = [];
-            }
-            var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
+            } else {
+                var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
 
-            promise.then(function (response) {
-                menu.found = response;
-            })
-                .catch(function (error) {
-                    console.log(error);
-                    menu.found = [];
+                promise.then(function (response) {
+                    menu.found = response;
                 })
+                    .catch(function (error) {
+                        console.log(error);
+                        menu.found = [];
+                    })
+            }
         };
 
         menu.removeItem = function (itemIndex) {
