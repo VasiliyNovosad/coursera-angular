@@ -16,14 +16,14 @@
         // Home page
             .state('home', {
                 url: '/',
-                templateUrl: 'src/shoppinglist/templates/home.template.html'
+                templateUrl: 'src/templates/home.template.html'
             })
 
-            // Premade list page
+            // Categories list page
             .state('categories', {
                 url: '/categories',
-                templateUrl: 'src/shoppinglist/templates/main-shoppinglist.template.html',
-                controller: 'MainShoppingListController as mainList',
+                templateUrl: 'src/templates/main-categories.template.html',
+                controller: 'MainCategoriesController as ctgr',
                 resolve: {
                     items: ['MenuDataService', function (MenuDataService) {
                         return MenuDataService.getAllCategories();
@@ -31,17 +31,17 @@
                 }
             })
 
-            // Item detail
-            .state('categories.items', {
-                // url: '/item-detail/{itemId}',
-                templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-                controller: 'ItemDetailController as itemDetail',
+            // Items detail
+            .state('items', {
+                url: '/items/{category}',
+                templateUrl: 'src/templates/main-items.template.html',
+                controller: 'MainItemsController as itemsCtrl',
                 params: {
-                    categoryId: null
+                    category: null
                 },
                 resolve: {
-                    items: ['MenuDataService', function (MenuDataService) {
-                        return MenuDataService.getItemsForCategory();
+                    items: ['$stateParams', 'MenuDataService', function ($stateParams, MenuDataService) {
+                        return MenuDataService.getItemsForCategory($stateParams.category);
                     }]
                 }
             });
