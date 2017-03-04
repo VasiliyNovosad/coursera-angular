@@ -113,6 +113,10 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* SIGN UP PAGE */
+input {
+  background-color: #612c3b;;
+}
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {
