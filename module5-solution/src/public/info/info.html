@@ -1,0 +1,30 @@
+<div id="info" ng-if="infoCtrl.isUserUnregistered()">
+    Not Signed Up Yet. <a ui-sref="public.signup">Sign Up Now!</a>
+</div>
+<div id="info" ng-if="!infoCtrl.isUserUnregistered()">
+    <div class="row"><div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12">
+        <div>
+            First name: {{infoCtrl.user.firstName}}
+        </div>
+        <div>
+            Last name: {{infoCtrl.user.lastName}}
+        </div>
+        <div>
+            Email: {{infoCtrl.user.email}}
+        </div>
+        <div>
+            Phone: {{infoCtrl.user.phone}}
+        </div>
+    </div>
+        <div>
+            <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12">
+                <a ui-sref="public.menuitems({category: infoCtrl.category.short_name})">
+                    <div class="category-tile">
+                        <img width="200" height="200" ng-src="images/menu/{{infoCtrl.category.short_name}}/{{infoCtrl.category.short_name}}.jpg" alt="{{infoCtrl.category.name}}">
+                        <span>{{infoCtrl.category.name}}</span>
+                    </div>
+                </a>
+            </div>
+        </div></div>
+
+</div>
