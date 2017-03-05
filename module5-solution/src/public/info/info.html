@@ -16,15 +16,19 @@
             Phone: {{infoCtrl.user.phone}}
         </div>
     </div>
-        <div>
-            <div class="col-md-3 col-sm-4 col-xs-6 col-xxs-12">
-                <a ui-sref="public.menuitems({category: infoCtrl.category.short_name})">
-                    <div class="category-tile">
-                        <img width="200" height="200" ng-src="images/menu/{{infoCtrl.category.short_name}}/{{infoCtrl.category.short_name}}.jpg" alt="{{infoCtrl.category.name}}">
-                        <span>{{infoCtrl.category.name}}</span>
-                    </div>
-                </a>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="menu-item-photo">
+                    <div>{{infoCtrl.menuItem.short_name}}</div>
+                    <img class="img-responsive" width="250" height="150" ng-src="https://fr1end-course5.herokuapp.com/images/{{infoCtrl.menuItem.short_name}}.jpg" alt="{{infoCtrl.menuItem.name}}">
+                </div>
+                <div class="menu-item-price">{{infoCtrl.menuItem.price_small | currency}}<span> {{infoCtrl.menuItem.small_portion_name}}</span> {{infoCtrl.menuItem.price_large | currency}} <span>{{infoCtrl.menuItem.large_portion_name}}</span></div>
             </div>
-        </div></div>
+            <div class="menu-item-description col-sm-7">
+                <h3 class="menu-item-title">{{infoCtrl.menuItem.name}}</h3>
+                <p class="menu-item-details">{{infoCtrl.menuItem.description}}</p>
+            </div>
+        </div>
+    </div>
 
 </div>

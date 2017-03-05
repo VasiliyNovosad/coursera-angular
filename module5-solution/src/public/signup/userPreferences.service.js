@@ -22,11 +22,7 @@
 
         service.getMenuItems = function (category) {
             var config = {};
-            if (category) {
-                config.params = {'category': category};
-            }
-
-            return $http.get('https://fr1end-course5.herokuapp.com/menu_items.json', config).then(function (response) {
+            return $http.get('https://fr1end-course5.herokuapp.com/menu_items/' + category + '.json', config).then(function (response) {
                 return response.data;
             });
         };

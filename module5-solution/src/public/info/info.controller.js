@@ -12,7 +12,7 @@
 
         if (reg.user.menuNumber !== null) {
             UserPreferencesService.getMenuItems(reg.user.menuNumber).then(function (data) {
-                reg.category = data.category;
+                reg.menuItem = data;
             });
         }
 

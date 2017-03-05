@@ -14,15 +14,14 @@
 
         reg.submit = function () {
             UserPreferencesService.getMenuItems(reg.user.menuNumber).then(function(data) {
-                if (data.menu_items.length > 0) {
-                    UserPreferencesService.setUserInfo(reg.user);
-                    reg.completed = true;
-                } else {
+                UserPreferencesService.setUserInfo(reg.user);
+                reg.completed = true;
+
+            })
+                .catch(function(errorResponse) {
                     reg.completed = false;
                     reg.menuNotExists = true;
-                }
-
-            });
+                });
 
 
         };
